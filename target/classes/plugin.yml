@@ -1,0 +1,9 @@
+main: com.encrox.instanceddungeons.InstancedDungeons
+name: InstancedDungeons
+version: 1.0
+depend: [InstancedRegions]
+
+commands:
+  dungeon:
+    description: Generic dungeon command.
+    usage: /dungeon help

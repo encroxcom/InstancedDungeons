@@ -1,0 +1,22 @@
+{
+  "locale": "en-GB",
+  "world": "instance",
+  "loadingDepth": 2,
+  "resetDungeons": [
+    {
+      "interval": 2592000,
+      "alias": "monthly",
+      "length": 10
+    },
+    {
+      "interval": 86400,
+      "alias": "daily",
+      "length": 10
+    },
+    {
+      "interval": 3600,
+      "alias": "hourly",
+      "length": 10
+    }
+  ]
+}
