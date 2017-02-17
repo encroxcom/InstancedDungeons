@@ -2,6 +2,7 @@ package com.encrox.instanceddungeons;
 
 import java.util.ArrayList;
 
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.plugin.Plugin;
 
@@ -40,6 +41,14 @@ public class DungeonWorld {
 	
 	//YOU STILL HAVE TO DISPOSE THE INSTANCED REGION MANUALLY!
 	public void deallocate(InstancedProtectedCuboidRegion region) {
+		BlockVector min = region.getMinimumPoint(), max = region.getMaximumPoint();
+		for(int y = min.getBlockY(), ymax = max.getBlockY(); y<ymax; y++) {
+			for(int z = min.getBlockZ(), zmax = max.getBlockZ(); z<zmax; z++) {
+				for(int x = min.getBlockX(), xmax = max.getBlockX(); x<xmax; x++) {
+					world.getBlockAt(x, y, z).setType(Material.AIR);
+				}
+			}
+		}
 		regions.remove(region);
 	}
 	

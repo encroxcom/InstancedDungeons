@@ -23,6 +23,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.sk89q.worldedit.EditSession;
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+
 public class InstancedDungeons extends JavaPlugin {
 	
 	public static Plugin plugin;
@@ -34,17 +37,23 @@ public class InstancedDungeons extends JavaPlugin {
 	public static DungeonWorld dungeonWorld;
 	public static File schematicsDirectory;
 	public static ArrayList<Dungeon> dungeons;
+	public static WorldEditPlugin we;
 	
 	public void onEnable() {
 		pdf = getDescription();
 		logger = Logger.getLogger("Minecraft");
-		if(setupMyself()) {
+		if(setupMyself() && setupWorldEdit()) {
 			plugin = this;
 			getCommand("dungeon").setExecutor(new Commander());
 			logger.info(pdf.getName() + " " + pdf.getVersion() + " has been enabled.");
 		} else {
 			logger.info(pdf.getName() + " " + pdf.getVersion() + " has been disabled.");
 		}
+	}
+	
+	public boolean setupWorldEdit() {
+		we = (WorldEditPlugin)Bukkit.getPluginManager().getPlugin("WorldEdit");
+		return (we != null);
 	}
 	
 	public boolean setupMyself() {

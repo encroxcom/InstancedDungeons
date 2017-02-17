@@ -28,6 +28,7 @@ public class Schematic {
 	public String materials;
 	public byte[] blocks, data;
 	public List<Tag> entities, tileEntities;
+	public File file;
 	
 	public Schematic(int width, int height, int length, String materials, byte[] blocks, byte[] data, List<Tag> entities, List<Tag> tileEntities) {
 		this.width = width;
@@ -43,6 +44,7 @@ public class Schematic {
 	}
 	
 	public Schematic(File file) {
+		this.file = file;
 		CompoundTag schematicTag = null;
 		try {
 			NBTInputStream in = new NBTInputStream(new FileInputStream(file));
@@ -61,6 +63,8 @@ public class Schematic {
 		data = ((ByteArrayTag)schematic.get("Data")).getValue();
 		entities = ((ListTag)schematic.get("Entities")).getValue();
 		tileEntities = ((ListTag)schematic.get("TileEntities")).getValue();
+		InstancedDungeons.logger.info("blocks: " + blocks.length);
+		InstancedDungeons.logger.info("data: " + data.length);
 	}
 	
 	public byte getBlockIdAt(int x, int y, int z) {
