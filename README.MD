@@ -6,7 +6,4 @@ Compatible with Minecraft versions: **1.8+**
 
 ## Requirements
 Required plugins:
-* ProtocolLib
-* WorldEdit
-* WorldGuard
 * InstancedRegions
